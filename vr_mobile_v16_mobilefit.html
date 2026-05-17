@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>TQQQ VR</title>
+
+<style>
+:root{
+  color-scheme:light;
+  --font-sans:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;
+  --color-background-primary:#ffffff;
+  --color-background-secondary:#f6f7f8;
+  --color-background-tertiary:#eef0f2;
+  --color-background-info:#f3f4f6;
+  --color-background-success:#eef8f3;
+  --color-background-warning:#fff7e6;
+  --color-background-danger:#fff1ef;
+  --color-border-primary:#343a42;
+  --color-border-secondary:#d9dde2;
+  --color-border-tertiary:#e8eaee;
+  --color-border-info:#343a42;
+  --color-text-primary:#20242a;
+  --color-text-secondary:#59616b;
+  --color-text-tertiary:#8b949e;
+  --color-text-info:#2b3037;
+  --color-text-success:#08784a;
+  --color-text-danger:#c43d2c;
+  --color-text-warning:#9a6600;
+  --border-radius-sm:8px;
+  --border-radius-md:12px;
+  --border-radius-lg:18px;
+  --shadow-card:0 8px 24px rgba(43,48,55,.038);
+  --shadow-soft:0 4px 14px rgba(43,48,55,.032);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%;font-family:var(--font-sans);font-size:14px;color:var(--color-text-primary);background:#fff}
+body{line-height:1.45;letter-spacing:-.02em;overflow-x:hidden}
+.sr-only{display:none!important}
+.app{width:100%;max-width:430px;margin:0 auto;padding:14px 14px calc(28px + env(safe-area-inset-bottom));background:#fff;position:relative}
+button,input,select{font:inherit;letter-spacing:-.02em}
+button{border:1px solid #2b3037;border-radius:12px;background:#333942;color:#fff;font-weight:800;cursor:pointer;box-shadow:none;transition:transform .12s ease,opacity .12s ease,background .12s ease}
+button:active{transform:translateY(1px);opacity:.86}
+input,select{outline:none;transition:border-color .14s ease,box-shadow .14s ease,background .14s ease}
+input:focus,select:focus{border-color:#2b3037!important;box-shadow:0 0 0 3px rgba(43,48,55,.08)}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px;padding:5px 2px 13px;border-bottom:1px solid #d9dde2;background:#fff;color:#2b3037}
+.topbar h1{display:flex;align-items:center;gap:8px;font-size:24px;font-weight:950;line-height:1;letter-spacing:-.055em;color:#2b3037}
+.topbar h1::after{content:"Dashboard";display:inline-flex;align-items:center;height:20px;margin-left:4px;padding:0 8px;border:1px solid #d9dde2;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.01em;color:#59616b;background:#fff}
+.topbar h1 i{display:none!important}.chips{display:flex;gap:6px;align-items:center;justify-content:flex-end}.chip{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;border:1px solid #2b3037;background:#333942;color:#fff;font-size:11px;font-weight:850;white-space:nowrap}.cg,.cb{background:#333942;color:#fff;border-color:#333942}
+
+.main-tabs{position:sticky;top:max(0px, env(safe-area-inset-top));z-index:20;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 0 14px;padding:3px;border:1px solid #d9dde2;border-radius:14px;background:rgba(255,255,255,.94);box-shadow:0 6px 20px rgba(43,48,55,.045);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.main-tab{height:38px;border:none;border-radius:10px;background:transparent;color:#68717c;font-size:12px;font-weight:850;box-shadow:none}.main-tab.active{background:#333942;color:#fff}.main-panel{display:none}.main-panel.active{display:block;animation:panelFade .14s ease-out}@keyframes panelFade{from{opacity:.55;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}.stat{position:relative;min-height:86px;padding:13px 13px 12px;border:1px solid #e3e6ea;border-radius:16px;background:#fff;box-shadow:var(--shadow-soft)}.sl{font-size:11px;color:#68717c;font-weight:800;margin-bottom:6px}.sv{font-size:20px;font-weight:950;line-height:1.1;color:#2b3037;letter-spacing:-.05em}.ss{font-size:10px;color:#8b949e;margin-top:5px;line-height:1.35}.blue{color:#2b3037}.green{color:#08784a}.red{color:#c43d2c}.amber{color:#9a6600}
+
+.sec-label{display:flex;align-items:center;gap:8px;margin:18px 1px 9px;font-size:11px;font-weight:950;color:#2b3037;text-transform:uppercase;letter-spacing:.055em}.sec-label::before{content:"";display:block;width:3px;height:13px;border-radius:999px;background:#2b3037}.divider{border:none;margin:18px 0}.divider::before{content:"";display:block;height:1px;background:#e8eaee}
+
+.target-card,.basis-card,.vpos-card,.form-card,.settings-card,.report-card,.report-note,.settings-note,.otbl-wrap,.fill-box,.hcard{border:1px solid #e3e6ea;border-radius:18px;background:#fff;box-shadow:var(--shadow-card)}
+.target-card{margin-bottom:12px;padding:15px}.target-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}.target-title{font-size:15px;font-weight:950;color:#2b3037;letter-spacing:-.035em}.target-pill{font-size:10px;font-weight:900;padding:5px 9px;border-radius:999px;border:1px solid #2b3037;background:#fff;color:#2b3037;white-space:nowrap}.target-main{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:11px}.target-metric,.vpos-metric,.report-card,.fill-summary>div{border:1px solid #e8eaee;border-radius:14px;background:#f8f9fa;padding:10px}.target-label,.vpos-label,.report-label,.pi-label,.hk,.basis-key,.field label{font-size:10px;color:#68717c;font-weight:850}.target-value,.vpos-val,.report-val{font-size:18px;font-weight:950;letter-spacing:-.045em;color:#2b3037}.target-sub,.vpos-small,.report-sub{font-size:10px;color:#8b949e;margin-top:3px;line-height:1.35}.target-track,.g-track{height:8px;background:#edf0f2;border-radius:999px;overflow:hidden}.target-fill,.g-fill{height:100%;border-radius:999px;background:#2b3037}.target-note{font-size:12px;line-height:1.55;color:#59616b;margin-top:8px}.target-actions{display:flex;gap:8px;margin-top:11px}.target-actions button,.report-actions button,.quick-actions button,.sync-row button,.form-btns button,.fill-add-btn{height:42px;padding:0 12px;font-size:13px;border-radius:12px}.target-actions button:nth-child(2),.quick-actions button:nth-child(2),.sync-row button:nth-child(2),#cancel-btn{background:#fff;color:#2b3037;border:1px solid #d9dde2;box-shadow:none}
+
+.basis-card{margin-bottom:12px;padding:13px 14px}.basis-title{display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:950;margin-bottom:9px}.basis-pill,.seeded-tag,.hcard-cycle{font-size:10px;font-weight:850;padding:4px 8px;border-radius:999px;border:1px solid #d9dde2;background:#fff;color:#2b3037}.basis-grid{display:grid;grid-template-columns:1fr;gap:0;font-size:12px}.basis-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid #eceff2}.basis-row:first-child{border-top:none}.basis-val{font-weight:850;text-align:right;color:#2b3037}
+
+.vpos-card{padding:15px;margin-bottom:12px}.vpos-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}.vpos-title{font-size:15px;font-weight:950;color:#2b3037}.vpos-sub{font-size:11px;color:#8b949e;line-height:1.45;margin-top:3px}.vpos-pill{font-size:11px;font-weight:900;padding:5px 9px;border-radius:999px;white-space:nowrap;border:1px solid #d9dde2;background:#fff;color:#2b3037}.vpos-pill.buy{border-color:#b9dfcd;background:#eef8f3;color:#08784a}.vpos-pill.sell{border-color:#f0c2bb;background:#fff1ef;color:#c43d2c}.vpos-pill.neutral{border-color:#d9dde2;background:#fff;color:#2b3037}.vpos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}.vpos-track{position:relative;height:14px;border-radius:999px;background:#edf0f2;overflow:visible;margin:16px 4px 7px;border:1px solid #e3e6ea}.vpos-marker{position:absolute;top:-7px;width:4px;height:28px;border-radius:999px;background:#2b3037;box-shadow:0 4px 14px rgba(43,48,55,.18);transform:translateX(-2px)}.vpos-marker::after{content:"";position:absolute;left:50%;top:-5px;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:6px solid #2b3037}.vpos-axis{display:grid;grid-template-columns:1fr 1fr 1fr;font-size:10px;color:#8b949e;margin-bottom:10px;font-weight:800}.vpos-axis span:nth-child(2){text-align:center}.vpos-axis span:nth-child(3){text-align:right}.vpos-desc,.vpos-chart-note,.order-note,.settings-note{font-size:12px;line-height:1.55;color:#59616b;background:#f8f9fa;border:1px solid #e8eaee;border-radius:14px;padding:10px 11px}.vpos-chart-note{margin:-2px 0 9px}.order-note{margin-bottom:11px}
+
+.tab-row{display:flex;gap:6px;margin-bottom:11px;padding:4px;border:1px solid #d9dde2;border-radius:14px;background:#fff;box-shadow:var(--shadow-soft)}.tab-btn{flex:1;height:38px;border:none;border-radius:10px;background:transparent;color:#68717c;font-size:13px;font-weight:850;box-shadow:none}.tab-btn.act-buy{background:#333942;color:#fff}.tab-btn.act-sell{background:#333942;color:#fff}
+.otbl-wrap{overflow:hidden;margin-bottom:12px}.otbl-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 13px;font-size:13px;font-weight:950;border-bottom:1px solid #e8eaee}.otbl-hdr.buy{background:#f8f9fa;color:#08784a}.otbl-hdr.sell{background:#f8f9fa;color:#c43d2c}.tbl-scroll{max-height:280px;overflow-y:auto}.otbl{width:100%;border-collapse:separate;border-spacing:0;font-size:12px;background:#fff}.otbl th{position:sticky;top:0;z-index:1;padding:8px 10px;text-align:right;border-bottom:1px solid #e8eaee;font-size:10px;color:#68717c;font-weight:850;background:#f8f9fa}.otbl th:first-child,.otbl td:first-child{text-align:left}.otbl td{padding:9px 10px;text-align:right;border-bottom:1px solid #f0f2f4;color:#2b3037}.otbl td:first-child{font-size:11px;color:#68717c;font-weight:750}.otbl tr:last-child td{border-bottom:none}.otbl tr.base td{color:#8b949e}.pbuy,.psell{display:inline-flex;align-items:center;justify-content:center;min-width:58px;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:900}.pbuy{background:#eef8f3;color:#08784a}.psell{background:#fff1ef;color:#c43d2c}
+
+.chart-section{margin-bottom:12px}.chart-svg{width:100%;display:block;border:1px solid #e3e6ea;border-radius:18px;background:#fff;box-shadow:var(--shadow-soft);overflow:hidden}
+
+.form-card{overflow:hidden;margin-bottom:13px}.form-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 14px;background:#f8f9fa;border-bottom:1px solid #e8eaee}.fht{font-size:14px;font-weight:950;color:#2b3037}.form-body{padding:14px}.form-fields{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field input,.field select,.fill-row-form .field input,.fill-row-form .field select{width:100%;height:42px;padding:0 11px;border-radius:12px;border:1px solid #d9dde2;background:#fff;color:#2b3037;font-size:14px}.field input.muted{background:#f8f9fa;color:#59616b;font-size:13px}.form-btns{display:flex;gap:8px}.preview-strip{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;padding:10px;border:1px solid #e8eaee;border-radius:14px;background:#f8f9fa;font-size:12px}.pi-val{margin-top:2px;font-weight:900;color:#2b3037}.cfg-toggle{display:inline-flex;align-items:center;gap:6px;margin:2px 0 9px;font-size:12px;color:#2b3037;font-weight:900;cursor:pointer;text-decoration:none}.cfg-panel{display:none;margin-bottom:12px;padding:11px;border:1px solid #e8eaee;border-radius:14px;background:#f8f9fa}.cfg-panel.open{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-items:flex-end}.cfg-panel .field input{height:40px;font-size:13px}.cfg-panel button{height:40px}
+
+.fill-box{margin:10px 0 12px;padding:12px;background:#f8f9fa}.fill-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font-size:13px;font-weight:950}.fill-row-form{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:9px}.fill-row-form .field.memo{grid-column:1/-1}.fill-list{display:flex;flex-direction:column;gap:7px;margin-top:9px}.fill-item{display:grid;grid-template-columns:auto 1fr auto;gap:9px;align-items:center;padding:10px;border:1px solid #e8eaee;border-radius:14px;background:#fff;font-size:12px}.fill-type{display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:950;padding:4px 8px;border-radius:999px;white-space:nowrap}.fill-type.buy{background:#eef8f3;color:#08784a}.fill-type.sell{background:#fff1ef;color:#c43d2c}.fill-main{line-height:1.4;font-weight:800;color:#2b3037}.fill-sub{font-size:10px;color:#8b949e;margin-top:2px;font-weight:650}.fill-del{padding:6px;border-radius:10px;background:#fff;color:#c43d2c;border:1px solid #f0c2bb;box-shadow:none;font-size:12px}.fill-summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:9px;font-size:12px}
+
+.hcard{padding:12px 13px;margin-bottom:9px;border-radius:16px}.hcard.editing{border-color:#2b3037;background:#f8f9fa}.hcard.seeded{opacity:.94}.hcard-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.hcard-left{display:flex;align-items:center;gap:7px;min-width:0}.hcard-date{font-size:12px;color:#59616b;font-weight:800}.hcard-roi{font-size:15px;font-weight:950}.hcard-body{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:12px}.hv{font-weight:900;color:#2b3037}.hcard-actions{display:flex;gap:7px;margin-top:10px;padding-top:10px;border-top:1px solid #e8eaee}.hcard-actions button{flex:1;height:34px;padding:0 10px;border-radius:11px;border:1px solid #d9dde2;background:#fff;color:#2b3037;box-shadow:none;font-size:12px}.hcard-actions .edt{color:#2b3037}.hcard-actions .del{background:#fff;color:#c43d2c;border-color:#f0c2bb}
+
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}.report-card{padding:12px}.report-card.wide{grid-column:1/-1}.report-note{padding:13px;margin-bottom:12px;white-space:pre-line}.report-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid #e3e6ea;border-radius:16px;background:#fff;box-shadow:var(--shadow-soft);font-size:12px}.report-table th,.report-table td{padding:10px;border-bottom:1px solid #f0f2f4;text-align:right}.report-table th:first-child,.report-table td:first-child{text-align:left}.report-table tr:last-child td{border-bottom:none}.report-table th{font-size:10px;color:#68717c;font-weight:900;background:#f8f9fa}.report-actions{display:flex;gap:8px;margin:12px 0}
+
+.settings-note{margin-bottom:12px}.settings-card{overflow:hidden;margin-bottom:13px}.settings-card .form-hdr{border-bottom:1px solid #e8eaee}.settings-card .form-body{padding:14px}.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.pool-adj{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:0;padding:12px;border:1px solid #e8eaee;border-radius:14px;background:#f8f9fa}.pool-adj-label{font-size:11px;color:#68717c;font-weight:900;white-space:nowrap}.pool-val{font-size:13px;font-weight:950;color:#08784a}.pool-adj input{flex:1;min-width:120px;height:40px;padding:0 11px;border-radius:12px;border:1px solid #d9dde2;background:#fff;color:#2b3037}.pool-adj button{height:40px;padding:0 13px;font-size:12px;white-space:nowrap}.sync-panel{display:none;margin-bottom:12px;padding:12px;border:1px solid #e8eaee;border-radius:14px;background:#f8f9fa}.sync-panel.open{display:block}.sync-fields{display:grid;grid-template-columns:1fr;gap:9px;margin-bottom:9px}.sync-row{display:flex;gap:8px;flex-wrap:wrap}.sync-row button{flex:1;min-width:106px}.checkline{display:flex;align-items:center;gap:7px;margin:5px 0 10px;font-size:12px;color:#59616b;font-weight:750}.checkline input{width:auto;height:auto}.sync-status{font-size:11px;color:#8b949e;line-height:1.45;margin-top:8px}
+
+.modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:9999;padding:18px;background:rgba(43,48,55,.56);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.modal-backdrop.show{display:flex}.target-modal{max-width:420px;width:100%;padding:22px 20px;border:1px solid #d9dde2;border-radius:20px;background:#fff!important;color:#2b3037!important;box-shadow:0 30px 90px rgba(43,48,55,.24);animation:modalPop .16s ease-out}.target-modal h3{font-size:22px;line-height:1.25;margin-bottom:10px;color:#2b3037!important;font-weight:950}.target-modal p{font-size:14px;line-height:1.65;color:#3f454d!important;white-space:pre-line;margin-bottom:16px}.target-modal button{width:100%;height:46px;border-radius:12px;background:#2b3037!important;color:#fff!important;font-weight:900}.target-modal .modal-sub{font-size:12px;color:#8b949e;margin-top:9px;text-align:center}@keyframes modalPop{from{opacity:.55;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+
+@supports (padding:max(0px)) {
+  .app{padding-left:max(14px, env(safe-area-inset-left));padding-right:max(14px, env(safe-area-inset-right));}
+}
+@media(max-width:360px){.app{padding-left:10px;padding-right:10px}.topbar h1{font-size:21px}.stat{padding:11px}.sv{font-size:18px}.target-main,.form-fields,.preview-strip,.cfg-panel.open{grid-template-columns:1fr}.vpos-grid{grid-template-columns:1fr}.fill-row-form{grid-template-columns:1fr 1fr}.fill-row-form .field:first-child,.fill-row-form .field.memo{grid-column:1/-1}.hcard-body{grid-template-columns:1fr 1fr}.report-grid{grid-template-columns:1fr}.target-actions,.form-btns,.quick-actions{grid-template-columns:1fr;flex-direction:column}.main-tab{font-size:11px}.otbl th,.otbl td{padding-left:8px;padding-right:8px}}
+</style>
+</head>
+<body>
+
+
+
+<div class="app">
+
+<div class="topbar">
+  <h1>TQQQ VR</h1>
+  <div class="chips">
+    <span class="chip cg">VR Strategy</span>
+  </div>
+</div>
+
+<div class="main-tabs">
+  <button class="main-tab active" id="main-tab-dash" onclick="showMainTab('dash')">대시보드</button>
+  <button class="main-tab" id="main-tab-trade" onclick="showMainTab('trade')">거래기록</button>
+  <button class="main-tab" id="main-tab-report" onclick="showMainTab('report')">리포트</button>
+  <button class="main-tab" id="main-tab-settings" onclick="showMainTab('settings')">설정</button>
+</div>
+
+<div id="panel-dash" class="main-panel active">
+
+<div class="stat-grid">
+  <div class="stat"><div class="sl">다음 회차</div><div class="sv blue" id="s-cycle">—</div><div class="ss" id="s-date">—</div></div>
+  <div class="stat"><div class="sl">수익률</div><div class="sv" id="s-roi">—</div><div class="ss" id="s-roisub">—</div></div>
+  <div class="stat"><div class="sl">V 목표 (자동)</div><div class="sv" id="s-v">—</div><div class="ss" id="s-vsub">—</div></div>
+  <div class="stat"><div class="sl">Pool (잔액+$300)</div><div class="sv green" id="s-pool">—</div><div class="ss" id="s-psub">—</div></div>
+  <div class="stat"><div class="sl">보유 주수</div><div class="sv" id="s-shares">—</div><div class="ss" id="s-avg">—</div></div>
+  <div class="stat"><div class="sl">매수한도</div><div class="sv amber" id="s-limit">—</div><div class="ss" id="s-limitsub">한도 없이 전체 운용</div></div>
+</div>
+
+
+<div class="target-card">
+  <div class="target-top">
+    <div class="target-title">1억 전환 목표</div>
+    <div class="target-pill" id="target-pill">진행 중</div>
+  </div>
+  <div class="target-main">
+    <div class="target-metric"><div class="target-label">원화 환산 총자산</div><div class="target-value" id="target-krw">—</div><div class="target-sub" id="target-fx">환율 설정값 기준</div></div>
+    <div class="target-metric"><div class="target-label">목표까지</div><div class="target-value" id="target-left">—</div><div class="target-sub" id="target-date">예상 목표일 2029-12-27</div></div>
+  </div>
+  <div class="target-track"><div class="target-fill" id="target-fill"></div></div>
+  <div class="target-note" id="target-note">원화 기준 1억원 달성 시 거치식으로 전환하고 새 계좌에서 VR을 다시 시작합니다.</div>
+  <div class="target-actions"><button onclick="showTargetModal(true)">전환 안내 보기</button><button onclick="resetTargetAlert()">달성 알림 초기화</button></div>
+</div>
+
+<div class="basis-card">
+  <div class="basis-title"><span id="basis-title">주문 기준</span><span class="basis-pill" id="basis-cycle">—</span></div>
+  <div class="basis-grid">
+    <div class="basis-row"><span class="basis-key">기준 종가</span><span class="basis-val" id="basis-close">—</span></div>
+    <div class="basis-row"><span class="basis-key">점검일</span><span class="basis-val" id="basis-review">—</span></div>
+    <div class="basis-row"><span class="basis-key">예약 주문일</span><span class="basis-val" id="basis-order">—</span></div>
+  </div>
+</div>
+
+<div class="vpos-card">
+  <div class="vpos-head">
+    <div>
+      <div class="vpos-title">V 위치 그래프</div>
+      <div class="vpos-sub">현재 평가금이 다음 V 목표 대비 어디에 있는지 확인합니다.</div>
+    </div>
+    <div class="vpos-pill neutral" id="vpos-zone">—</div>
+  </div>
+  <div class="vpos-grid">
+    <div class="vpos-metric"><div class="vpos-label">V 달성률</div><div class="vpos-val" id="vpos-ratio">—</div><div class="vpos-small" id="vpos-gap">—</div></div>
+    <div class="vpos-metric"><div class="vpos-label">현재 평가금</div><div class="vpos-val" id="vpos-eval">—</div><div class="vpos-small" id="vpos-vtarget">V 목표 —</div></div>
+    <div class="vpos-metric"><div class="vpos-label">구간 기준</div><div class="vpos-val" id="vpos-band">85 / 115</div><div class="vpos-small">매수 / 매도 기준</div></div>
+  </div>
+  <div class="vpos-track" id="vpos-track"><div class="vpos-marker" id="vpos-marker"></div></div>
+  <div class="vpos-axis"><span id="vpos-axis-buy">매수 85%</span><span>V 100%</span><span id="vpos-axis-sell">매도 115%</span></div>
+  <div class="vpos-desc" id="vpos-desc">—</div>
+</div>
+
+<div class="sec-label">주문 포인트</div>
+<div class="order-note" id="order-note">—</div>
+<div class="tab-row">
+  <button class="tab-btn act-buy" id="tab-buy" onclick="showTab('buy')"><i class="ti ti-arrow-bar-down" aria-hidden="true"></i> 매수 지정가</button>
+  <button class="tab-btn" id="tab-sell" onclick="showTab('sell')"><i class="ti ti-arrow-bar-up" aria-hidden="true"></i> 매도 지정가</button>
+</div>
+<div id="panel-buy" class="otbl-wrap">
+  <div class="otbl-hdr buy"><span id="buy-hdr">매수 지정가 전체</span><span id="buy-minv" style="font-weight:400;font-size:11px"></span></div>
+  <div class="tbl-scroll">
+    <table class="otbl"><thead><tr><th>매수 후 주수</th><th>매수 가격</th><th>Pool 잔액</th></tr></thead><tbody id="buy-body"></tbody></table>
+  </div>
+</div>
+<div id="panel-sell" class="otbl-wrap" style="display:none">
+  <div class="otbl-hdr sell"><span>매도 지정가 전체</span><span id="sell-maxv" style="font-weight:400;font-size:11px"></span></div>
+  <div class="tbl-scroll">
+    <table class="otbl"><thead><tr><th>매도 후 주수</th><th>매도 가격</th><th>Pool 잔액</th></tr></thead><tbody id="sell-body"></tbody></table>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec-label">V 달성률 추이</div>
+<div class="vpos-chart-note" id="vpos-chart-note">85% 이하는 매수 구간, 115% 이상은 매도 구간입니다.</div>
+<div class="chart-section"><svg id="v-chart-el" class="chart-svg" viewBox="0 0 460 170" xmlns="http://www.w3.org/2000/svg"></svg></div>
+
+<div class="divider"></div>
+<div class="sec-label">수익률 추이</div>
+<div class="chart-section"><svg id="chart-el" class="chart-svg" viewBox="0 0 460 160" xmlns="http://www.w3.org/2000/svg"></svg></div>
+
+<div class="divider"></div>
+
+
+</div>
+
+<div id="panel-trade" class="main-panel">
+  <div class="sec-label">회차 마감 · 체결내역</div>
+<div class="form-card">
+  <div class="form-hdr">
+    <span class="fht" id="form-title"><i class="ti ti-pencil" aria-hidden="true" style="font-size:13px;vertical-align:-1px;margin-right:4px"></i>회차 마감 기록</span>
+    <span style="font-size:11px;color:var(--color-text-tertiary)">기준 종가일 자동 표시</span>
+  </div>
+  <div class="form-body">
+    <div class="form-fields">
+      <div class="field"><label>직전 종가 ($)</label><input type="number" id="inp-price" step="0.01" placeholder="78.50" oninput="updatePreview()"></div>
+      <div class="field"><label>거래 총액 ($)</label><input type="number" id="inp-trade" step="0.01" placeholder="체결내역 기준 자동" oninput="updatePreview()"></div>
+      <div class="field"><label>현재 보유 주수</label><input type="number" id="inp-shares" placeholder="체결내역 기준 자동" oninput="updatePreview()"></div>
+      <div class="field"><label>V 조정 (선택)</label><input type="number" id="inp-v" step="0.01" class="muted" oninput="updatePreview()"></div>
+    </div>
+
+    <div class="fill-box">
+      <div class="fill-head"><span>체결내역 입력</span><span id="fill-count">0건</span></div>
+      <div class="fill-row-form">
+        <div class="field"><label>구분</label><select id="fill-type" onchange="updatePreview()"><option value="buy">매수</option><option value="sell">매도</option></select></div>
+        <div class="field"><label>수량</label><input type="number" id="fill-qty" step="1" min="1" placeholder="6"></div>
+        <div class="field"><label>체결가</label><input type="number" id="fill-price" step="0.01" placeholder="63.15"></div>
+        <div class="field memo"><label>메모/체결일 선택</label><input type="text" id="fill-note" placeholder="예: 매수 지정가 1차 체결, 2026-05-18"></div>
+      </div>
+      <button class="fill-add-btn" onclick="addFill()">체결내역 추가</button>
+      <div class="fill-list" id="fill-list"></div>
+      <div class="fill-summary">
+        <div><div class="pi-label">순거래액</div><div class="pi-val" id="fill-net">$0.00</div></div>
+        <div><div class="pi-label">주수 변화</div><div class="pi-val" id="fill-share-delta">0주</div></div>
+        <div><div class="pi-label">예상 주수</div><div class="pi-val" id="fill-shares-after">—</div></div>
+      </div>
+    </div>
+
+    <div class="form-btns">
+      <button id="submit-btn" onclick="submitCycle()"><i class="ti ti-check" aria-hidden="true"></i> <span id="submit-label">기록하기</span></button>
+      <button id="cancel-btn" onclick="cancelEdit()" style="display:none;color:var(--color-text-secondary)">취소</button>
+    </div>
+    <div class="preview-strip">
+      <div><div class="pi-label">이번 V</div><div class="pi-val" id="pr-v">—</div></div>
+      <div><div class="pi-label">거래 후 Pool</div><div class="pi-val" id="pr-pool">—</div></div>
+      <div><div class="pi-label">다음 V 예측</div><div class="pi-val" id="pr-vnext">—</div></div>
+      <div><div class="pi-label">예상 수익률</div><div class="pi-val" id="pr-roi">—</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">전체 거래 이력 (<span id="hist-count">0</span>회차)</div>
+<div id="hist-list"></div>
+</div>
+
+<div id="panel-settings" class="main-panel">
+  <div class="sec-label">설정 · 백업</div>
+  <div class="settings-note">기본 설정, GitHub Gist 저장, JSON 백업/복원, Pool 조정은 이 탭에서 관리합니다. G값은 내부 계산에서 11로 고정하고 화면에서는 제거했습니다.</div>
+  <div class="settings-card">
+    <div class="form-hdr"><span class="fht">기본 전략 설정</span><span style="font-size:11px;color:var(--color-text-tertiary)">적립금 · 환율 · 목표</span></div>
+    <div class="form-body">
+    <span class="cfg-toggle" onclick="toggleCfg()">초기 설정</span>
+    <div class="cfg-panel open" id="cfg-panel">
+      <div class="field"><label>개수 간격</label><input type="number" id="cfg-step" value="6" min="1" oninput="render()"></div>
+      <div class="field"><label>적립금($)</label><input type="number" id="cfg-dep" value="300" min="1" step="0.01" oninput="render()"></div>
+      <div class="field"><label>매수한도(%)</label><input type="number" id="cfg-buy-limit" value="100" min="0" max="100" step="1" oninput="render()"></div>
+      <div class="field"><label>환율(원/$)</label><input type="number" id="cfg-fx" value="1350" min="1" step="0.01" oninput="render()"></div>
+      <div class="field"><label>전환 목표일</label><input type="date" id="cfg-target-date" value="2029-12-27" oninput="render()"></div>
+      <div class="field"><label>전환 목표금액(원)</label><input type="number" id="cfg-target-krw" value="100000000" min="1" step="1000000" oninput="render()"></div>
+      <div class="field"><label>&nbsp;</label><button onclick="saveCfg()">저장</button></div>
+    </div>
+
+    <span class="cfg-toggle" onclick="toggleSync()">GitHub Gist 저장 설정</span>
+    <div class="sync-panel" id="sync-panel">
+      <div class="sync-fields">
+        <div class="field full"><label>Gist ID</label><input type="text" id="sync-gist" placeholder="예: abc123..." oninput="saveSyncSettings(false)"></div>
+        <div class="field full"><label>파일명</label><input type="text" id="sync-file" value="tqqq-vr-state.json" oninput="saveSyncSettings(false)"></div>
+        <div class="field full"><label>GitHub Token</label><input type="password" id="sync-token" placeholder="fine-grained token 또는 classic token" oninput="saveSyncSettings(false)"></div>
+      </div>
+      <label class="checkline"><input type="checkbox" id="sync-auto" onchange="saveSyncSettings(false)"> 기록 후 GitHub에 자동 저장</label>
+      <div class="sync-row">
+        <button onclick="pushGist(true)">GitHub 저장</button>
+        <button onclick="pullGist()">GitHub 불러오기</button>
+      </div>
+      <div class="sync-row" style="margin-top:6px">
+        <button onclick="exportJson()">JSON 백업</button>
+        <button onclick="document.getElementById('json-import').click()">JSON 복원</button>
+      </div>
+      <input type="file" id="json-import" accept="application/json,.json" style="display:none" onchange="importJsonFile(event)">
+      <div class="sync-status" id="sync-status">GitHub 기록은 DQ 앱 방식처럼 Gist JSON 파일에 상태값을 저장하는 구조입니다.</div>
+    </div>
+    </div>
+  </div>
+  <div class="settings-card">
+    <div class="form-hdr"><span class="fht">Pool 수동 조정</span><span style="font-size:11px;color:var(--color-text-tertiary)">앱 기록 이후만 조정</span></div>
+    <div class="form-body">
+<div class="pool-adj">
+  <span class="pool-adj-label">Pool 조정</span>
+  <span class="pool-val" id="adj-cur">—</span>
+  <input type="number" id="adj-amt" step="0.01" placeholder="금액 (예: +50.25)">
+  <button onclick="adjustPool()"><i class="ti ti-plus" aria-hidden="true"></i> 추가</button>
+</div>
+      <div class="quick-actions"><button onclick="showTargetModal(true)">전환 안내 보기</button><button onclick="resetTargetAlert()">달성 알림 초기화</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="panel-report" class="main-panel">
+  <div class="sec-label">운영 리포트</div>
+  <div class="report-grid" id="report-summary"></div>
+  <div class="report-actions">
+    <button onclick="copyReportText()">리포트 복사</button>
+    <button onclick="showMainTab('dash')">대시보드</button>
+  </div>
+  <div class="report-note" id="report-narrative">—</div>
+  <div class="sec-label">최근 회차 변화</div>
+  <table class="report-table">
+    <thead><tr><th>회차</th><th>총자산</th><th>Pool</th><th>수익률</th></tr></thead>
+    <tbody id="report-recent"></tbody>
+  </table>
+</div>
+
+</div>
+
+
+<div class="modal-backdrop" id="target-modal-backdrop">
+  <div class="target-modal">
+    <h3 id="target-modal-title">1억 전환 안내</h3>
+    <p id="target-modal-body">원화 기준 1억원 달성 시 거치식으로 전환하고 새로운 계좌에서 VR을 다시 시작하세요.</p>
+    <button onclick="closeTargetModal()">확인</button>
+    <div class="modal-sub">화면 바깥은 어둡게 처리되어 안내문이 선명하게 보입니다.</div>
+  </div>
+</div>
+
+<script>
+const SKEY = 'vr_v12_state';
+const LEGACY_KEYS_V8 = ['vr_v11_state','vr_v10_state','vr_v9_state','vr_v8_state','vr_v7_state','vr_v6_state','vr_v5_state','vr_v5'];
+const LEGACY_KEYS = LEGACY_KEYS_V8;
+
+// 전체 엑셀 이력 (cycleIdx, date, price, tradeNet, shares, V, pool=남을Pool, G, roi)
+const HIST_DATA = [
+  {i:0,d:'2024-12-27',p:84.66,t:-253.98,s:3,V:253.98,pl:46.02,G:10,r:0},
+  {i:1,d:'2024-12-30',p:76.83,t:-243.78,s:6,V:558.58,pl:102.24,G:10,r:0},
+  {i:2,d:'2025-01-13',p:86.75,t:-228.09,s:9,V:853.37,pl:174.15,G:10,r:-0.041},
+  {i:3,d:'2025-01-27',p:82.73,t:-237.42,s:12,V:1159.3,pl:236.73,G:10,r:0.046},
+  {i:4,d:'2025-02-10',p:83.71,t:-513.84,s:18,V:1456.64,pl:22.89,G:10,r:0.020},
+  {i:5,d:'2025-02-24',p:67.41,t:-250.32,s:21,V:1766.86,pl:72.57,G:10,r:0.016},
+  {i:6,d:'2025-03-10',p:62.18,t:-191.94,s:24,V:2018.58,pl:180.63,G:10,r:-0.148},
+  {i:7,d:'2025-03-24',p:41.09,t:-394.14,s:30,V:2253.43,pl:143.4,G:10,r:-0.178},
+  {i:8,d:'2025-04-07',p:45.16,t:-426.06,s:39,V:2406.38,pl:17.34,G:10,r:-0.379},
+  {i:9,d:'2025-04-21',p:59.43,t:-254.16,s:45,V:2606.11,pl:63.18,G:10,r:-0.307},
+  {i:10,d:'2025-05-05',p:71.45,t:-165.66,s:48,V:2923.22,pl:197.52,G:10,r:-0.080},
+  {i:11,d:'2025-05-19',p:70,t:0,s:48,V:3323.04,pl:497.52,G:10,r:0.091},
+  {i:12,d:'2025-06-02',p:72.83,t:0,s:48,V:3678.64,pl:797.52,G:10,r:0.066},
+  {i:13,d:'2025-06-16',p:81.42,t:0,s:48,V:4029.49,pl:1097.52,G:10,r:0.094},
+  {i:14,d:'2025-06-30',p:83.72,t:0,s:48,V:4420.06,pl:1397.52,G:10,r:0.179},
+  {i:15,d:'2025-07-14',p:88.92,t:-250.94,s:51,V:4796.33,pl:1446.58,G:10,r:0.191},
+  {i:16,d:'2025-07-28',p:92.16,t:-254.43,s:54,V:5199.66,pl:1492.15,G:10,r:0.232},
+  {i:17,d:'2025-08-11',p:90.38,t:-264.51,s:57,V:5613.61,pl:1527.64,G:10,r:0.253},
+  {i:18,d:'2025-08-25',p:91.82,t:-522.15,s:63,V:5993.33,pl:1305.49,G:10,r:0.224},
+  {i:19,d:'2025-09-08',p:102.98,t:0,s:63,V:6390.89,pl:1605.49,G:10,r:0.232},
+  {i:20,d:'2025-09-22',p:104.7,t:0,s:63,V:6866.75,pl:1905.49,G:10,r:0.332},
+  {i:21,d:'2025-10-06',p:103.97,t:-578.67,s:69,V:7314.51,pl:1626.82,G:10,r:0.334},
+  {i:22,d:'2025-10-20',p:116.72,t:0,s:69,V:7754.96,pl:1926.82,G:10,r:0.319},
+  {i:23,d:'2025-11-03',p:104.74,t:-607.56,s:75,V:8294.87,pl:1619.26,G:10,r:0.428},
+  {i:24,d:'2025-11-17',p:50.03,t:-590.76,s:162,V:8687.33,pl:1328.5,G:10,r:0.303},
+  {i:25,d:'2025-11-20',p:54.54,t:-423.69,s:171,V:9028.08,pl:1204.81,G:10,r:0.248},
+  {i:26,d:'2025-12-01',p:52.82,t:0,s:171,V:9495.72,pl:1504.81,G:10,r:0.337},
+  {i:27,d:'2025-12-15',p:55.29,t:0,s:171,V:9862.65,pl:1804.81,G:11,r:0.290},
+  {i:28,d:'2025-12-29',p:54.59,t:0,s:171,V:10265.21,pl:2104.81,G:11,r:0.329},
+  {i:29,d:'2026-01-12',p:54.33,t:-622.5,s:183,V:10616.31,pl:1782.31,G:11,r:0.304},
+  {i:30,d:'2026-01-26',p:50.59,t:-1167.72,s:207,V:10976.74,pl:914.59,G:11,r:0.293},
+  {i:31,d:'2026-02-09',p:48.83,t:0,s:207,V:11283.81,pl:1214.59,G:11,r:0.217},
+  {i:32,d:'2026-02-23',p:47.54,t:-559.5,s:219,V:11516.94,pl:955.09,G:11,r:0.174},
+  {i:33,d:'2026-03-09',p:43.08,t:-798.48,s:237,V:11737.08,pl:456.61,G:11,r:0.144},
+  {i:34,d:'2026-03-23',p:44.57,t:-746.28,s:255,V:11848.37,pl:10.33,G:11,r:0.044},
+  {i:35,d:'2026-04-06',p:58.59,t:1103.94,s:237,V:12076.49,pl:1414.27,G:11,r:0.081},
+  {i:36,d:'2026-04-20',p:65.3,t:1145.52,s:219,V:12777.83,pl:2859.79,G:11,r:0.405},
+
+];
+
+let cfg = {stepSize:6,deposit:300,buyBand:0.85,sellBand:1.15,buyLimitPct:100,fxRate:1350,targetKRW:100000000,targetDate:'2029-12-27',targetAlerted:false,targetAchievedAt:'',targetAchievedCycle:null};
+let history = []; // 앱에서 추가한 기록
+let sync = {gistId:'',token:'',fileName:'tqqq-vr-state.json',autoPush:false};
+let currentFills = [];
+let reportTextCache = '';
+let editingCycleIdx = -1;
+let activeTab = 'buy';
+
+const round2 = n => Math.round((Number(n)||0)*100)/100;
+const FIXED_G = 11;
+const getG = _i => FIXED_G;
+const fmt = (n,d=2) => '$'+(Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct = r => (r>=0?'+':'')+((Number(r)||0)*100).toFixed(1)+'%';
+const toISO = d => d.toISOString().slice(0,10);
+
+function parseISO(s){
+  const [y,m,d]=String(s).split('-').map(Number);
+  return new Date(y,m-1,d);
+}
+function addDays(date,days){const d=new Date(date); d.setDate(d.getDate()+days); return d;}
+function prevWeekday(date,weekday){
+  const d=new Date(date);
+  let diff=(d.getDay()-weekday+7)%7;
+  if(diff===0) diff=7;
+  d.setDate(d.getDate()-diff);
+  return d;
+}
+function koDate(s){
+  const d=typeof s==='string'?parseISO(s):s;
+  const week=['일','월','화','수','목','금','토'][d.getDay()];
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}(${week})`;
+}
+function getDatePack(lastDate){
+  const cycleDate=addDays(parseISO(lastDate),14);
+  const closeDate=prevWeekday(cycleDate,5);
+  const reviewDate=prevWeekday(cycleDate,0);
+  return {cycleDate,closeDate,reviewDate,cycleISO:toISO(cycleDate),closeISO:toISO(closeDate),reviewISO:toISO(reviewDate)};
+}
+
+function calcEval(rec){ return round2((Number(rec.s)||0)*(Number(rec.p)||0)); }
+function normalizeRecord(h){
+  return {
+    cycleIdx:h.i, i:h.i, date:h.d, d:h.d, price:Number(h.p)||0, p:Number(h.p)||0,
+    tradeNet:Number(h.t)||0, t:Number(h.t)||0, shares:Number(h.s)||0, s:Number(h.s)||0,
+    V:Number(h.V)||0, pool:Number(h.pl)||0, pl:Number(h.pl)||0, G:FIXED_G,
+    roi:Number(h.r)||0, evalAmt:Number(h.e)||calcEval(h)
+  };
+}
+function getAllRecords(){
+  const map=new Map();
+  HIST_DATA.forEach(h=>map.set(h.i,{...h,isSeed:true}));
+  history.forEach(h=>map.set(h.i,{...h,isUser:true}));
+  return [...map.values()].sort((a,b)=>a.i-b.i);
+}
+function getLast(){ return normalizeRecord(getAllRecords().at(-1)); }
+function getBefore(idx){
+  const list=getAllRecords().filter(h=>h.i<idx);
+  return normalizeRecord(list.at(-1)||HIST_DATA[HIST_DATA.length-1]);
+}
+function calcNextVFrom(last,nextG){
+  const base = last.V + last.pool/nextG + (last.evalAmt-last.V)/(2*Math.sqrt(nextG));
+  return round2(round2(base)+Number(cfg.deposit));
+}
+function getNext(baseRec){
+  const last=baseRec?normalizeRecord(baseRec):getLast();
+  const ni=last.cycleIdx+1;
+  const G=getG(ni);
+  const V=calcNextVFrom(last,G);
+  const pool=round2(last.pool+Number(cfg.deposit));
+  const principal=(ni+1)*Number(cfg.deposit);
+  const total=last.evalAmt+pool;
+  const roi=(total-principal)/principal;
+  const dates=getDatePack(last.date);
+  return {ni,G,V,pool,shares:last.shares,price:last.price,roi,dates,last};
+}
+
+function showMainTab(tab){
+  ['dash','trade','report','settings'].forEach(t=>{
+    const panel=document.getElementById('panel-'+t);
+    const btn=document.getElementById('main-tab-'+t);
+    if(panel) panel.classList.toggle('active',t===tab);
+    if(btn) btn.classList.toggle('active',t===tab);
+  });
+  if(tab==='report') renderReport();
+  if(tab==='trade') { renderHistory(); syncFillInputs(); updatePreview(); }
+  if(tab==='settings') { hydrateCfgFields(); hydrateSyncFields(); }
+}
+function getFillSummary(fills=currentFills,baseShares=getNext().shares){
+  let net=0, delta=0, buyAmt=0, sellAmt=0, buyQty=0, sellQty=0;
+  fills.forEach(f=>{
+    const qty=Number(f.qty)||0, price=Number(f.price)||0, amt=round2(qty*price);
+    if(f.type==='sell'){ net=round2(net+amt); delta-=qty; sellAmt=round2(sellAmt+amt); sellQty+=qty; }
+    else { net=round2(net-amt); delta+=qty; buyAmt=round2(buyAmt+amt); buyQty+=qty; }
+  });
+  return {net,delta,sharesAfter:baseShares+delta,buyAmt,sellAmt,buyQty,sellQty,count:fills.length};
+}
+function syncFillInputs(){
+  const np=getNext();
+  const sum=getFillSummary(currentFills,np.shares);
+  if(currentFills.length){
+    const t=document.getElementById('inp-trade'); if(t) t.value=sum.net.toFixed(2);
+    const s=document.getElementById('inp-shares'); if(s) s.value=sum.sharesAfter;
+  }
+  const ids={
+    'fill-count':sum.count+'건',
+    'fill-net':fmt(sum.net,2),
+    'fill-share-delta':(sum.delta>=0?'+':'')+sum.delta+'주',
+    'fill-shares-after':sum.sharesAfter+'주'
+  };
+  Object.entries(ids).forEach(([id,val])=>{const el=document.getElementById(id); if(el) el.textContent=val;});
+  renderFills();
+}
+function renderFills(){
+  const list=document.getElementById('fill-list'); if(!list) return;
+  list.innerHTML='';
+  if(!currentFills.length){
+    list.innerHTML='<div class="fill-sub">체결된 주문이 없으면 비워두면 됩니다. 매수/매도 체결을 추가하면 거래 총액과 현재 보유 주수가 자동 계산됩니다.</div>';
+    return;
+  }
+  currentFills.forEach((f,idx)=>{
+    const amt=round2((Number(f.qty)||0)*(Number(f.price)||0));
+    const div=document.createElement('div');
+    div.className='fill-item';
+    div.innerHTML=`<span class="fill-type ${f.type==='sell'?'sell':'buy'}">${f.type==='sell'?'매도':'매수'}</span>
+      <div class="fill-main">${f.qty}주 × ${fmt(f.price,2)} = ${fmt(amt,2)}<div class="fill-sub">${f.note?f.note:'메모 없음'}</div></div>
+      <button class="fill-del" onclick="removeFill(${idx})">삭제</button>`;
+    list.appendChild(div);
+  });
+}
+function addFill(){
+  const type=document.getElementById('fill-type')?.value||'buy';
+  const qty=parseInt(document.getElementById('fill-qty')?.value,10);
+  const price=parseFloat(document.getElementById('fill-price')?.value);
+  const note=document.getElementById('fill-note')?.value.trim()||'';
+  if(!qty||qty<=0||!price||price<=0){alert('체결 수량과 체결가를 입력해주세요.');return;}
+  currentFills.push({type,qty,price:round2(price),note,ts:new Date().toISOString()});
+  ['fill-qty','fill-price','fill-note'].forEach(id=>{const el=document.getElementById(id); if(el) el.value='';});
+  syncFillInputs(); updatePreview();
+}
+function removeFill(idx){ currentFills.splice(idx,1); syncFillInputs(); updatePreview(); }
+function clearFills(){ currentFills=[]; syncFillInputs(); }
+function getRecordTotal(rec){ return round2((Number(rec.s)||0)*(Number(rec.p)||0)+(Number(rec.pl)||0)); }
+
+function fmtKRW(n){return Math.round(Number(n)||0).toLocaleString('ko-KR')+'원';}
+function getTargetStatus(rec=getLast()){
+  const totalUsd=getRecordTotal(rec);
+  const fx=Number(cfg.fxRate)||1350;
+  const targetKRW=Number(cfg.targetKRW)||100000000;
+  const totalKRW=round2(totalUsd*fx);
+  const ratio=targetKRW?Math.min(totalKRW/targetKRW,1):0;
+  const left=Math.max(0,targetKRW-totalKRW);
+  const achieved=totalKRW>=targetKRW;
+  const achievedDate=rec.d||rec.date||new Date().toISOString().slice(0,10);
+  const targetDate=cfg.targetDate||'2029-12-27';
+  const earlyOrOn=String(achievedDate)<=String(targetDate);
+  const mode=achieved?(earlyOrOn?'early':'late'):'progress';
+  return {rec,totalUsd,totalKRW,fx,targetKRW,ratio,left,achieved,achievedDate,targetDate,earlyOrOn,mode};
+}
+function buildTargetMessage(status=getTargetStatus(),manual=false){
+  if(status.achieved){
+    const head=status.earlyOrOn?'축하합니다!':'고생했습니다!';
+    const timing=status.earlyOrOn?`예상 목표일 ${koDate(status.targetDate)} 이전 또는 당일에 원화 기준 1억원을 달성했습니다.`:`예상 목표일 ${koDate(status.targetDate)} 이후에 원화 기준 1억원을 달성했습니다.`;
+    return `${head}\n\n${timing}\n현재 원화 환산 총자산은 ${fmtKRW(status.totalKRW)}입니다.\n\n이제 이 계좌는 거치식으로 전환하고, 새로운 계좌에서 VR을 다시 시작하세요.`;
+  }
+  return `아직 1억원 전환 목표 진행 중입니다.\n현재 원화 환산 총자산은 ${fmtKRW(status.totalKRW)}이고, 목표까지 ${fmtKRW(status.left)} 남았습니다.\n\n목표 달성 시 이 계좌는 거치식으로 전환하고, 새로운 계좌에서 VR을 다시 시작하세요.`;
+}
+function renderTargetCard(){
+  const st=getTargetStatus();
+  const set=(id,val)=>{const el=document.getElementById(id); if(el) el.textContent=val;};
+  set('target-krw',fmtKRW(st.totalKRW));
+  set('target-left',st.achieved?'달성':fmtKRW(st.left));
+  set('target-fx',`환율 ${Number(st.fx).toLocaleString('ko-KR')}원/$ 기준`);
+  set('target-date',`예상 목표일 ${koDate(st.targetDate)}`);
+  const pctTxt=(st.totalKRW/st.targetKRW*100).toFixed(1)+'%';
+  set('target-note', st.achieved?`${pctTxt} 달성. 거치식 전환 후 새 계좌 VR 시작 안내 대상입니다.`:`진행률 ${pctTxt}. 원화 기준 1억원 달성 시 거치식 전환 후 새 계좌에서 VR을 다시 시작합니다.`);
+  set('target-pill', st.achieved?(st.earlyOrOn?'조기 달성':'목표일 이후 달성'):'진행 중');
+  const fill=document.getElementById('target-fill'); if(fill) fill.style.width=(Math.min(100,st.totalKRW/st.targetKRW*100)).toFixed(1)+'%';
+}
+
+function clamp(n,min,max){return Math.max(min,Math.min(max,n));}
+function getVPosition(np=getNext()){
+  const evalAmt=round2(np.last.evalAmt);
+  const V=round2(np.V);
+  const ratio=V?evalAmt/V:0;
+  const gap=ratio-1;
+  const buyBand=Number(cfg.buyBand)||0.85;
+  const sellBand=Number(cfg.sellBand)||1.15;
+  let zone='중립 구간', cls='neutral';
+  if(ratio<=buyBand){zone='매수 구간';cls='buy';}
+  else if(ratio>=sellBand){zone='매도 구간';cls='sell';}
+  const buyValue=round2(V*buyBand);
+  const sellValue=round2(V*sellBand);
+  return {evalAmt,V,ratio,gap,buyBand,sellBand,buyValue,sellValue,zone,cls,np};
+}
+function renderVPosition(np=getNext()){
+  const v=getVPosition(np);
+  const set=(id,val)=>{const el=document.getElementById(id); if(el) el.textContent=val;};
+  set('vpos-ratio',(v.ratio*100).toFixed(1)+'%');
+  set('vpos-gap',(v.gap>=0?'+':'')+(v.gap*100).toFixed(1)+'% vs V');
+  set('vpos-eval',fmt(v.evalAmt,2));
+  set('vpos-vtarget','V 목표 '+fmt(v.V,2));
+  set('vpos-band',Math.round(v.buyBand*100)+' / '+Math.round(v.sellBand*100));
+  set('vpos-axis-buy','매수 '+Math.round(v.buyBand*100)+'%');
+  set('vpos-axis-sell','매도 '+Math.round(v.sellBand*100)+'%');
+  const zoneEl=document.getElementById('vpos-zone');
+  if(zoneEl){zoneEl.textContent=v.zone;zoneEl.className='vpos-pill '+v.cls;}
+  const domainMin=0.70, domainMax=1.30;
+  const markerPct=clamp((v.ratio-domainMin)/(domainMax-domainMin)*100,0,100);
+  const buyPct=clamp((v.buyBand-domainMin)/(domainMax-domainMin)*100,0,100);
+  const sellPct=clamp((v.sellBand-domainMin)/(domainMax-domainMin)*100,0,100);
+  const track=document.getElementById('vpos-track');
+  if(track) track.style.background=`linear-gradient(to right,#EEF8F3 0 ${buyPct}%, var(--color-background-secondary) ${buyPct}% ${sellPct}%, #FFF1EF ${sellPct}% 100%)`;
+  const marker=document.getElementById('vpos-marker');
+  if(marker) marker.style.left=markerPct+'%';
+  let desc='';
+  if(v.cls==='buy') desc=`현재 평가금은 V 목표의 ${(v.ratio*100).toFixed(1)}%입니다. 매수 기준선 ${Math.round(v.buyBand*100)}% 아래라서 주문표상 매수 지정가 체결 구간에 해당합니다.`;
+  else if(v.cls==='sell') desc=`현재 평가금은 V 목표의 ${(v.ratio*100).toFixed(1)}%입니다. 매도 기준선 ${Math.round(v.sellBand*100)}% 이상이라서 주문표상 매도 지정가 체결 구간에 해당합니다.`;
+  else desc=`현재 평가금은 V 목표의 ${(v.ratio*100).toFixed(1)}%입니다. 매수 기준 ${Math.round(v.buyBand*100)}%와 매도 기준 ${Math.round(v.sellBand*100)}% 사이에 있어 중립 구간입니다.`;
+  set('vpos-desc',desc);
+  set('vpos-chart-note',`현재 V 달성률은 ${(v.ratio*100).toFixed(1)}%입니다. 85% 이하는 매수 구간, 100%는 V 목표, 115% 이상은 매도 구간으로 봅니다.`);
+}
+function renderVPositionTrend(np=getNext()){
+  const el=document.getElementById('v-chart-el'); if(!el) return;
+  const W=460,H=170,PL=42,PR=14,PT=14,PB=26;
+  const cW=W-PL-PR,cH=H-PT-PB;
+  const records=getAllRecords().map(normalizeRecord).filter(r=>r.V>0 && r.evalAmt>0);
+  const ptsData=records.map(r=>({i:r.i,ratio:r.evalAmt/r.V,seed:true}));
+  ptsData.push({i:np.ni,ratio:np.last.evalAmt/np.V,current:true});
+  ptsData.sort((a,b)=>a.i-b.i);
+  const maxCy=Math.max(...ptsData.map(d=>d.i),np.ni);
+  const ratios=ptsData.map(d=>d.ratio);
+  const minR=Math.min(0.70,Number(cfg.buyBand)-0.08,...ratios);
+  const maxR=Math.max(1.30,Number(cfg.sellBand)+0.08,...ratios);
+  const rng=maxR-minR || 1;
+  const cx=i=>PL+(i/maxCy)*cW;
+  const cy=r=>PT+cH-((r-minR)/rng)*cH;
+  const line=ptsData.map(d=>`${cx(d.i).toFixed(1)},${cy(d.ratio).toFixed(1)}`).join(' ');
+  let svg='';
+  const hLine=(r,label,color,wide=false)=>{
+    if(r<minR||r>maxR) return;
+    const y=cy(r);
+    svg+=`<line x1="${PL}" y1="${y.toFixed(1)}" x2="${W-PR}" y2="${y.toFixed(1)}" stroke="${color}" stroke-width="${wide?1.4:.8}" stroke-dasharray="${wide?'':'4,4'}"/>`;
+    svg+=`<text x="${PL-4}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="9" fill="${color}">${label}</text>`;
+  };
+  hLine(Number(cfg.buyBand)||0.85,'매수','#0F6E56',false);
+  hLine(1,'V','#7A828C',true);
+  hLine(Number(cfg.sellBand)||1.15,'매도','#993C1D',false);
+  [0.8,0.9,1.1,1.2,1.3].forEach(r=>{
+    if(Math.abs(r-(Number(cfg.buyBand)||0.85))<0.01||Math.abs(r-1)<0.01||Math.abs(r-(Number(cfg.sellBand)||1.15))<0.01)return;
+    if(r>=minR&&r<=maxR){const y=cy(r);svg+=`<line x1="${PL}" y1="${y.toFixed(1)}" x2="${W-PR}" y2="${y.toFixed(1)}" stroke="var(--color-border-tertiary)" stroke-width=".5" stroke-dasharray="3,3"/>`;}
+  });
+  svg+=`<polyline points="${line}" fill="none" stroke="#2b3037" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  ptsData.slice(-1).forEach(d=>{
+    svg+=`<circle cx="${cx(d.i).toFixed(1)}" cy="${cy(d.ratio).toFixed(1)}" r="5" fill="#2b3037"/>`;
+    const tx=cx(d.i)>W-70?cx(d.i)-58:cx(d.i)+8;
+    svg+=`<text x="${tx.toFixed(1)}" y="${(cy(d.ratio)-7).toFixed(1)}" font-size="10" font-weight="700" fill="#2b3037">${(d.ratio*100).toFixed(1)}%</text>`;
+  });
+  const step=Math.ceil(maxCy/7);
+  for(let c=0;c<=maxCy;c+=step) svg+=`<text x="${cx(c).toFixed(1)}" y="${H-6}" text-anchor="middle" font-size="8" fill="var(--color-text-tertiary)">${c}</text>`;
+  svg+=`<text x="${W-PR}" y="${PT+9}" text-anchor="end" font-size="9" fill="var(--color-text-tertiary)">평가금 ÷ V</text>`;
+  el.innerHTML=svg;
+}
+function showTargetModal(manual=false){
+  const st=getTargetStatus();
+  const title=document.getElementById('target-modal-title');
+  const body=document.getElementById('target-modal-body');
+  if(title) title.textContent=st.achieved?(st.earlyOrOn?'1억원 달성':'1억원 달성'):'1억원 전환 목표';
+  if(body) body.textContent=buildTargetMessage(st,manual);
+  document.getElementById('target-modal-backdrop')?.classList.add('show');
+}
+function closeTargetModal(){document.getElementById('target-modal-backdrop')?.classList.remove('show');}
+function markTargetAchievement(rec){
+  const st=getTargetStatus(rec);
+  if(st.achieved && !cfg.targetAlerted){
+    cfg.targetAlerted=true;
+    cfg.targetAchievedAt=st.achievedDate;
+    cfg.targetAchievedCycle=rec.i;
+    return true;
+  }
+  return false;
+}
+async function resetTargetAlert(){
+  if(!confirm('1억원 달성 팝업 기록을 초기화할까요? 목표를 이미 달성한 상태라면 다음 기록 저장 시 다시 안내됩니다.')) return;
+  cfg.targetAlerted=false; cfg.targetAchievedAt=''; cfg.targetAchievedCycle=null;
+  await save(); render();
+}
+async function maybeShowTargetAchievementCurrent(){
+  const just=markTargetAchievement(getLast());
+  if(just){ await save(); renderTargetCard(); setTimeout(()=>showTargetModal(false),250); }
+}
+function buildReport(){
+  const records=getAllRecords().map(normalizeRecord);
+  const last=records.at(-1), prev=records.at(-2)||last, first=records[0];
+  const total=getRecordTotal(last), prevTotal=getRecordTotal(prev);
+  const principal=(last.i+1)*Number(cfg.deposit), profit=round2(total-principal);
+  const poolRatio=total?last.pool/total:0;
+  const roiChange=last.roi-prev.roi;
+  const totalChange=round2(total-prevTotal);
+  const maxTotal=Math.max(...records.map(getRecordTotal));
+  const dd=total/maxTotal-1;
+  const buys=records.reduce((a,r)=>a+(r.t<0?Math.abs(r.t):0),0);
+  const sells=records.reduce((a,r)=>a+(r.t>0?r.t:0),0);
+  const lastUser=history.length?history[history.length-1]:null;
+  const lastFills=lastUser?.fills||[];
+  const fillSum=getFillSummary(lastFills,last.s);
+  const next=getNext(last);
+  const target=getTargetStatus(last);
+  const vpos=getVPosition(next);
+  let stance='중립';
+  if(poolRatio>=0.28) stance='현금 여력 충분';
+  else if(poolRatio<=0.08) stance='현금 여력 낮음';
+  const narrative=`${last.i}회차 기준 총자산은 ${fmt(total,2)}, 누적 원금은 ${fmt(principal,2)}, 평가손익은 ${fmt(profit,2)}입니다. 수익률은 ${pct(last.roi)}이며 직전 회차 대비 ${pct(roiChange)}p 변화했습니다.
+
+현재 Pool은 ${fmt(last.pool,2)}로 총자산 대비 ${(poolRatio*100).toFixed(1)}%입니다. 운영 상태는 '${stance}'으로 분류됩니다. 다음 회차 ${next.ni}회차의 자동 V 목표는 ${fmt(next.V,2)}이며, 기준 종가일은 ${koDate(next.dates.closeDate)}입니다.
+
+현재 V 달성률은 ${(vpos.ratio*100).toFixed(1)}%이며, 평가금은 V 목표 대비 ${vpos.gap>=0?'+':''}${(vpos.gap*100).toFixed(1)}% 위치입니다. 현재 구간은 '${vpos.zone}'입니다. 매수 기준은 ${(vpos.buyBand*100).toFixed(0)}%, 매도 기준은 ${(vpos.sellBand*100).toFixed(0)}%입니다.
+
+1억원 전환 목표 진행률은 ${(target.totalKRW/target.targetKRW*100).toFixed(1)}%입니다. 원화 환산 총자산은 ${fmtKRW(target.totalKRW)}이며, 목표 달성 시 이 계좌는 거치식으로 전환하고 새 계좌에서 VR을 다시 시작합니다.
+
+최근 앱 기록 체결내역은 ${lastFills.length}건이며, 순거래액은 ${fmt(fillSum.net,2)}입니다. 매수 체결은 ${fillSum.buyQty}주/${fmt(fillSum.buyAmt,2)}, 매도 체결은 ${fillSum.sellQty}주/${fmt(fillSum.sellAmt,2)}입니다.`;
+  return {records,last,prev,total,principal,profit,poolRatio,roiChange,totalChange,dd,buys,sells,next,target,vpos,narrative};
+}
+function renderReport(){
+  const r=buildReport();
+  reportTextCache=r.narrative;
+  const summary=document.getElementById('report-summary'); if(!summary) return;
+  summary.innerHTML=`
+    <div class="report-card"><div class="report-label">총자산</div><div class="report-val">${fmt(r.total,2)}</div><div class="report-sub">직전 대비 ${fmt(r.totalChange,2)}</div></div>
+    <div class="report-card"><div class="report-label">누적 수익률</div><div class="report-val ${r.last.roi>=0?'green':'red'}">${pct(r.last.roi)}</div><div class="report-sub">직전 대비 ${pct(r.roiChange)}p</div></div>
+    <div class="report-card"><div class="report-label">Pool 비중</div><div class="report-val">${(r.poolRatio*100).toFixed(1)}%</div><div class="report-sub">Pool ${fmt(r.last.pool,2)}</div></div>
+    <div class="report-card"><div class="report-label">보유 주수</div><div class="report-val">${r.last.s}주</div><div class="report-sub">평가금 ${fmt(r.last.evalAmt,2)}</div></div>
+    <div class="report-card"><div class="report-label">V 달성률</div><div class="report-val ${r.vpos.cls==='buy'?'green':(r.vpos.cls==='sell'?'red':'blue')}">${(r.vpos.ratio*100).toFixed(1)}%</div><div class="report-sub">${r.vpos.zone} · ${r.vpos.gap>=0?'+':''}${(r.vpos.gap*100).toFixed(1)}% vs V</div></div>
+    <div class="report-card"><div class="report-label">1억 목표 진행률</div><div class="report-val">${(r.target.totalKRW/r.target.targetKRW*100).toFixed(1)}%</div><div class="report-sub">${fmtKRW(r.target.totalKRW)}</div></div>
+    <div class="report-card"><div class="report-label">전환 상태</div><div class="report-val ${r.target.achieved?'green':'amber'}">${r.target.achieved?'달성':'진행'}</div><div class="report-sub">목표일 ${koDate(r.target.targetDate)}</div></div>
+    <div class="report-card wide"><div class="report-label">다음 운영 기준</div><div class="report-val">${r.next.ni}회차 · ${fmt(r.next.V,2)}</div><div class="report-sub">${koDate(r.next.dates.closeDate)} 종가 입력 · ${koDate(r.next.dates.cycleDate)} 지정가 예약 · 매수한도 ${Number(cfg.buyLimitPct)||100}%</div></div>`;
+  document.getElementById('report-narrative').textContent=r.narrative;
+  const recent=document.getElementById('report-recent'); recent.innerHTML='';
+  r.records.slice(-8).reverse().forEach(x=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${x.i}회</td><td>${fmt(getRecordTotal(x),2)}</td><td>${fmt(x.pool,2)}</td><td class="${x.roi>=0?'green':'red'}">${pct(x.roi)}</td>`;
+    recent.appendChild(tr);
+  });
+}
+function copyReportText(){
+  if(!reportTextCache) renderReport();
+  navigator.clipboard?.writeText(reportTextCache).then(()=>alert('운영 리포트를 복사했습니다.')).catch(()=>alert(reportTextCache));
+}
+
+async function load(){
+  let loaded=false;
+  try{
+    const raw=localStorage.getItem(SKEY) || LEGACY_KEYS.map(k=>localStorage.getItem(k)).find(Boolean);
+    if(raw){ const d=JSON.parse(raw); applyState(d,false); loaded=true; }
+  }catch(e){}
+  if(!loaded && window.storage){
+    for(const key of [SKEY,...LEGACY_KEYS]){
+      try{ const r=await window.storage.get(key); if(r?.value){applyState(JSON.parse(r.value),false); loaded=true; break;} }catch(e){}
+    }
+  }
+  render(); hydrateCfgFields(); hydrateSyncFields();
+  maybeShowTargetAchievementCurrent();
+}
+function applyState(d,rerender=true){
+  cfg={...cfg,...(d.cfg||{})};
+  history=Array.isArray(d.history)?d.history:[];
+  sync={...sync,...(d.sync||{})};
+  if(rerender){render(); hydrateCfgFields(); hydrateSyncFields();}
+}
+function getState(){return {version:'vr_mobile_v12',updatedAt:new Date().toISOString(),cfg,history,sync:{...sync,token:sync.token?sync.token:''}};}
+async function save(opts={}){
+  const state=getState();
+  try{localStorage.setItem(SKEY,JSON.stringify(state));}catch(e){}
+  try{if(window.storage) await window.storage.set(SKEY,JSON.stringify(state));}catch(e){}
+  if(opts.auto && sync.autoPush && sync.token) pushGist(false);
+}
+
+function buildBuy(shares,minV,pool){
+  const rows=[]; let p=round2(pool),n=Number(shares)||0, spent=0;
+  const buyLimitPct=Math.max(0,Math.min(100,Number(cfg.buyLimitPct)||100));
+  const maxBuyAmt=round2(pool*(buyLimitPct/100));
+  rows.push({n,price:null,p,isBase:true,spent,maxBuyAmt});
+  for(let i=0;i<200;i++){
+    const pr=round2(minV/n), cost=round2(cfg.stepSize*pr);
+    if(p<cost||p<1) break;
+    if(round2(spent+cost)>maxBuyAmt) break;
+    p=round2(p-cost); spent=round2(spent+cost); n+=Number(cfg.stepSize);
+    rows.push({n,price:pr,p,spent,maxBuyAmt});
+  }
+  return rows;
+}
+function buildSell(shares,maxV,pool){
+  const rows=[]; let p=round2(pool),n=Number(shares)||0;
+  rows.push({n,price:null,p,isBase:true});
+  while(n>cfg.stepSize){
+    const pr=round2(maxV/n), gain=round2(cfg.stepSize*pr);
+    p=round2(p+gain); n-=Number(cfg.stepSize);
+    rows.push({n,price:pr,p});
+    if(rows.length>200) break;
+  }
+  return rows;
+}
+function showTab(t){
+  activeTab=t;
+  document.getElementById('panel-buy').style.display=t==='buy'?'':'none';
+  document.getElementById('panel-sell').style.display=t==='sell'?'':'none';
+  document.getElementById('tab-buy').className='tab-btn'+(t==='buy'?' act-buy':'');
+  document.getElementById('tab-sell').className='tab-btn'+(t==='sell'?' act-sell':'');
+}
+
+function render(){
+  const np=getNext();
+  const last=np.last;
+  const minV=round2(np.V*cfg.buyBand), maxV=round2(np.V*cfg.sellBand);
+
+  document.getElementById('s-cycle').textContent=np.ni+'회차';
+  document.getElementById('s-date').textContent=koDate(np.dates.cycleDate)+' 주문';
+  document.getElementById('s-v').textContent=fmt(np.V,2);
+  document.getElementById('s-vsub').textContent=`Pool 완충 + 괴리보정 + $${Number(cfg.deposit).toFixed(2)}`;
+  document.getElementById('s-pool').textContent=fmt(np.pool,2);
+  document.getElementById('s-psub').textContent=`이전 Pool ${fmt(last.pool,2)} + 적립금`;
+  document.getElementById('s-shares').textContent=np.shares+'주';
+  document.getElementById('s-avg').textContent='평가금 '+fmt(last.evalAmt,2);
+  const rEl=document.getElementById('s-roi');
+  rEl.textContent=pct(np.roi);
+  rEl.className='sv '+(np.roi>=0?'green':'red');
+  document.getElementById('s-roisub').textContent=fmt(last.evalAmt+np.pool-((np.ni+1)*cfg.deposit),2)+' 수익';
+  document.getElementById('s-limit').textContent=(Number(cfg.buyLimitPct)||100)+'%';
+  document.getElementById('s-limitsub').textContent='매수 지정가 전체 운용';
+  document.getElementById('adj-cur').textContent=fmt(last.pool,2);
+
+  document.getElementById('basis-title').textContent=np.ni+'회차 운영 기준';
+  document.getElementById('basis-cycle').textContent='다음 기록일 '+koDate(np.dates.cycleDate);
+  document.getElementById('basis-close').textContent=koDate(np.dates.closeDate)+' 종가 입력';
+  document.getElementById('basis-review').textContent=koDate(np.dates.reviewDate)+' 주문표 점검';
+  document.getElementById('basis-order').textContent=koDate(np.dates.cycleDate)+' 장 시작 전 지정가 예약';
+  document.getElementById('order-note').textContent=`${np.ni}회차 주문표는 ${koDate(np.dates.closeDate)} TQQQ 종가와 ${koDate(np.dates.reviewDate)} 점검 기준입니다. 실제 주문은 ${koDate(np.dates.cycleDate)} 장 시작 전 매수·매도 모두 지정가 예약 주문용입니다. 매수한도는 ${Number(cfg.buyLimitPct)||100}%로 운용합니다.`;
+  renderTargetCard();
+  renderVPosition(np);
+
+  document.getElementById('buy-minv').textContent='최솟값 '+fmt(minV,2)+' · 한도 '+(Number(cfg.buyLimitPct)||100)+'%';
+  document.getElementById('sell-maxv').textContent='최댓값 '+fmt(maxV,2);
+
+  const buyRows=buildBuy(np.shares,minV,np.pool);
+  const sellRows=buildSell(np.shares,maxV,np.pool);
+  function fill(bodyId,rows,type){
+    const body=document.getElementById(bodyId); body.innerHTML='';
+    rows.forEach(r=>{
+      const tr=document.createElement('tr');
+      if(r.isBase) tr.className='base';
+      const priceHtml=r.price?(type==='buy'?`<span class="pbuy">${fmt(r.price,2)}</span>`:`<span class="psell">${fmt(r.price,2)}</span>`):'—';
+      const low=r.p<np.pool*0.1&&!r.isBase;
+      tr.innerHTML=`<td>${r.n}주${r.isBase?' (현재)':''}</td><td>${priceHtml}</td><td${low?' class="amber"':''}>${fmt(r.p,2)}</td>`;
+      body.appendChild(tr);
+    });
+  }
+  fill('buy-body',buyRows,'buy');
+  fill('sell-body',sellRows,'sell');
+
+  renderVPositionTrend(np);
+  renderChart(np);
+  renderHistory();
+  document.getElementById('inp-v').placeholder=fmt(np.V,2).replace('$','')+' (자동)';
+  syncFillInputs();
+  updatePreview();
+  if(document.getElementById('panel-report')?.classList.contains('active')) renderReport();
+}
+
+function renderChart(np){
+  const W=460,H=160,PL=40,PR=12,PT=14,PB=24;
+  const cW=W-PL-PR,cH=H-PT-PB;
+  const allROI=HIST_DATA.map(h=>[h.i,h.r]);
+  history.forEach(h=>{if(!allROI.find(d=>d[0]===h.i))allROI.push([h.i,h.r]);});
+  allROI.sort((a,b)=>a[0]-b[0]);
+  const maxCy=Math.max(...allROI.map(d=>d[0]),np.ni);
+  const rVals=allROI.map(d=>d[1]);
+  const minR=Math.min(-0.45,...rVals), maxR=Math.max(0.8,...rVals), rng=maxR-minR;
+  const cx=c=>PL+(c/maxCy)*cW, cy=r=>PT+cH-((r-minR)/rng)*cH, z=cy(0);
+  const pts=allROI.map(d=>`${cx(d[0]).toFixed(1)},${cy(d[1]).toFixed(1)}`).join(' ');
+  const aPath=['M'+cx(allROI[0][0])+','+z,...allROI.map(d=>'L'+cx(d[0]).toFixed(1)+','+cy(d[1]).toFixed(1)),'L'+cx(allROI[allROI.length-1][0])+','+z+'Z'].join('');
+  const isPos=allROI[allROI.length-1][1]>=0;
+  const lx=cx(allROI[allROI.length-1][0]),ly=cy(allROI[allROI.length-1][1]);
+  let svg='';
+  [-0.4,-0.2,0,0.2,0.4,0.6].forEach(r=>{
+    if(r<minR-0.05||r>maxR+0.05)return;
+    const y=cy(r),isZ=Math.abs(r)<0.001;
+    svg+=`<line x1="${PL}" y1="${y.toFixed(1)}" x2="${W-PR}" y2="${y.toFixed(1)}" stroke="${isZ?'#888':'var(--color-border-tertiary)'}" stroke-width="${isZ?1.5:.5}" ${isZ?'':'stroke-dasharray="3,3"'}/>`;
+    svg+=`<text x="${PL-3}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="9" fill="${r<0?'var(--color-text-danger)':'var(--color-text-secondary)'}">${Math.round(r*100)}%</text>`;
+  });
+  svg+=`<rect x="${cx(6).toFixed(0)}" y="${PT}" width="${(cx(11)-cx(6)).toFixed(0)}" height="${cH}" fill="var(--color-background-danger)" opacity="0.12"/>`;
+  svg+=`<text x="${((cx(6)+cx(11))/2).toFixed(0)}" y="${PT+10}" text-anchor="middle" font-size="8" fill="var(--color-text-danger)" opacity=".7">폭락</text>`;
+  svg+=`<path d="${aPath}" fill="${isPos?'#168661':'#b14b2d'}" opacity=".1"/>`;
+  svg+=`<polyline points="${pts}" fill="none" stroke="${isPos?'#168661':'#b14b2d'}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  const step=Math.ceil(maxCy/7);
+  for(let c=0;c<=maxCy;c+=step) svg+=`<text x="${cx(c).toFixed(1)}" y="${H-4}" text-anchor="middle" font-size="8" fill="var(--color-text-tertiary)">${c}</text>`;
+  svg+=`<circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="5" fill="${isPos?'#168661':'#b14b2d'}"/>`;
+  svg+=`<circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="9" fill="${isPos?'#168661':'#b14b2d'}" opacity=".2"/>`;
+  const lbX=lx>W-60?lx-36:lx+8;
+  svg+=`<text x="${lbX.toFixed(1)}" y="${(ly-7).toFixed(1)}" font-size="10" font-weight="500" fill="${isPos?'#0F6E56':'#993C1D'}">${pct(allROI[allROI.length-1][1])}</text>`;
+  document.getElementById('chart-el').innerHTML=svg;
+}
+
+function renderHistory(){
+  const userSet=new Set(history.map(h=>h.i));
+  const combined=[...history.map(h=>{return {...h,isUser:true};}).reverse(),...HIST_DATA.filter(h=>!userSet.has(h.i)).reverse()];
+  document.getElementById('hist-count').textContent=combined.length;
+  const list=document.getElementById('hist-list'); list.innerHTML='';
+  combined.forEach(h=>{
+    const isUser=h.isUser, isEditing=h.i===editingCycleIdx;
+    const tPos=(Number(h.t)||0)>=0;
+    const tStr=(tPos?'+':'')+fmt(h.t,2);
+    const rStr=pct(h.r||0), rPos=(h.r||0)>=0;
+    const div=document.createElement('div');
+    div.className='hcard'+(isEditing?' editing':'')+(isUser?'':' seeded');
+    div.innerHTML=`
+      <div class="hcard-top">
+        <div class="hcard-left">
+          <span class="hcard-date">${h.d}</span>
+          <span class="hcard-cycle">${h.i}회</span>
+          ${!isUser?'<span class="seeded-tag">엑셀</span>':(Array.isArray(h.fills)&&h.fills.length?'<span class="seeded-tag">체결 '+h.fills.length+'건</span>':'')}
+        </div>
+        <span class="hcard-roi ${rPos?'green':'red'}">${rStr}</span>
+      </div>
+      <div class="hcard-body">
+        <div><div class="hk">종가</div><div class="hv">${fmt(h.p,2)}</div></div>
+        <div><div class="hk">주수</div><div class="hv">${h.s}주</div></div>
+        <div><div class="hk">거래</div><div class="hv ${tPos?'red':'green'}">${tStr}</div></div>
+        <div><div class="hk">Pool</div><div class="hv">${fmt(h.pl,2)}</div></div>
+      </div>
+      ${isUser?`<div class="hcard-actions">
+        <button class="edt" onclick="startEdit(${h.i})"><i class="ti ti-pencil" aria-hidden="true"></i> 수정</button>
+        <button class="del" onclick="deleteCycle(${h.i})"><i class="ti ti-trash" aria-hidden="true"></i> 삭제</button>
+      </div>`:''}`;
+    list.appendChild(div);
+  });
+}
+
+function updatePreview(){
+  const np=getNext();
+  if(currentFills.length) syncFillInputs();
+  const price=parseFloat(document.getElementById('inp-price').value)||np.price;
+  const fillSum=getFillSummary(currentFills,np.shares);
+  const tradeNet=currentFills.length?fillSum.net:(parseFloat(document.getElementById('inp-trade').value)||0);
+  const shares=currentFills.length?fillSum.sharesAfter:(parseInt(document.getElementById('inp-shares').value)||np.shares);
+  const vOv=parseFloat(document.getElementById('inp-v').value)||0;
+  const thisV=vOv||np.V;
+  const poolAfter=round2(np.pool+tradeNet);
+  const evalAmt=round2(shares*price);
+  const principal=(np.ni+1)*cfg.deposit;
+  const roi=(evalAmt+poolAfter-principal)/principal;
+  const nextG=getG(np.ni+1);
+  const vNext=calcNextVFrom({V:thisV,pool:poolAfter,evalAmt},nextG);
+  document.getElementById('pr-v').textContent=fmt(thisV,2);
+  document.getElementById('pr-pool').textContent=fmt(poolAfter,2)+(poolAfter<0?' ⚠':'');
+  document.getElementById('pr-vnext').textContent=fmt(vNext,2);
+  document.getElementById('pr-roi').textContent=pct(roi);
+}
+
+
+async function submitCycle(){
+  const price=parseFloat(document.getElementById('inp-price').value);
+  const np0=getNext();
+  const fillSum=getFillSummary(currentFills,np0.shares);
+  const tradeNet=currentFills.length?fillSum.net:(parseFloat(document.getElementById('inp-trade').value)||0);
+  const shares=currentFills.length?fillSum.sharesAfter:parseInt(document.getElementById('inp-shares').value);
+  const vOv=parseFloat(document.getElementById('inp-v').value)||0;
+  if(!price||!shares){alert('종가와 보유 주수는 필수입니다. 체결내역을 입력하면 보유 주수는 자동 계산됩니다.');return;}
+  if(round2(np0.pool+tradeNet)<0 && !confirm('거래 후 Pool이 음수입니다. 그래도 저장할까요?')) return;
+
+  let targetJustReached=false;
+  if(editingCycleIdx>=0){
+    const prev=getBefore(editingCycleIdx);
+    const expected=getNext(prev);
+    const idx=history.findIndex(h=>h.i===editingCycleIdx);
+    if(idx>=0){
+      const thisV=vOv||expected.V;
+      const poolAfter=round2(expected.pool+tradeNet);
+      const evalAmt=round2(shares*price);
+      const principal=(editingCycleIdx+1)*cfg.deposit;
+      const roi=(evalAmt+poolAfter-principal)/principal;
+      const rec={...history[idx],p:price,t:tradeNet,s:shares,V:thisV,pl:poolAfter,G:expected.G,r:roi,e:evalAmt,fills:[...currentFills]};
+      history[idx]=rec;
+      targetJustReached=markTargetAchievement(rec);
+    }
+    cancelEdit(false);
+  } else {
+    const np=getNext();
+    if(history.some(h=>h.i===np.ni)){alert(np.ni+'회차 기록이 이미 있습니다. 기존 기록을 수정해주세요.');return;}
+    const thisV=vOv||np.V;
+    const poolAfter=round2(np.pool+tradeNet);
+    const evalAmt=round2(shares*price);
+    const principal=(np.ni+1)*cfg.deposit;
+    const roi=(evalAmt+poolAfter-principal)/principal;
+    const rec={i:np.ni,d:np.dates.cycleISO,p:price,t:tradeNet,s:shares,V:thisV,pl:poolAfter,G:np.G,r:roi,e:evalAmt,fills:[...currentFills],isUser:true};
+    history.push(rec);
+    targetJustReached=markTargetAchievement(rec);
+  }
+  ['inp-price','inp-trade','inp-shares','inp-v'].forEach(id=>document.getElementById(id).value='');
+  clearFills();
+  await save({auto:true}); render();
+  if(targetJustReached) setTimeout(()=>showTargetModal(false),250);
+}
+
+function startEdit(idx){
+  const rec=history.find(h=>h.i===idx);
+  if(!rec){alert('앱에서 추가한 기록만 수정할 수 있습니다.');return;}
+  editingCycleIdx=idx;
+  document.getElementById('inp-price').value=rec.p;
+  document.getElementById('inp-trade').value=rec.t;
+  document.getElementById('inp-shares').value=rec.s;
+  document.getElementById('inp-v').value=rec.V;
+  currentFills=Array.isArray(rec.fills)?rec.fills.map(f=>({...f})):[];
+  syncFillInputs();
+  document.getElementById('form-title').innerHTML='<i class="ti ti-pencil" aria-hidden="true" style="font-size:13px;vertical-align:-1px;margin-right:4px"></i>'+idx+'회차 수정';
+  document.getElementById('submit-label').textContent='수정 저장';
+  document.getElementById('cancel-btn').style.display='';
+  document.querySelector('.form-card').scrollIntoView({behavior:'smooth',block:'nearest'});
+  renderHistory(); updatePreview();
+}
+function cancelEdit(doRender=true){
+  editingCycleIdx=-1;
+  ['inp-price','inp-trade','inp-shares','inp-v'].forEach(id=>document.getElementById(id).value='');
+  clearFills();
+  document.getElementById('form-title').innerHTML='<i class="ti ti-pencil" aria-hidden="true" style="font-size:13px;vertical-align:-1px;margin-right:4px"></i>회차 마감 기록';
+  document.getElementById('submit-label').textContent='기록하기';
+  document.getElementById('cancel-btn').style.display='none';
+  if(doRender) renderHistory();
+}
+async function deleteCycle(idx){
+  if(!confirm(idx+'회차 기록을 삭제할까요?'))return;
+  history=history.filter(h=>h.i!==idx);
+  await save({auto:true}); render();
+}
+async function adjustPool(){
+  const amt=parseFloat(document.getElementById('adj-amt').value);
+  if(!amt){alert('조정 금액을 입력해주세요.');return;}
+  if(history.length>0) history[history.length-1].pl=round2(history[history.length-1].pl+amt);
+  else alert('앱에서 기록된 회차가 있어야 Pool 조정이 가능합니다. 현재 엑셀 기본 기록은 보존용이라 직접 수정하지 않습니다.');
+  const targetJustReached=markTargetAchievement(getLast());
+  document.getElementById('adj-amt').value='';
+  await save({auto:true}); render();
+  if(targetJustReached) setTimeout(()=>showTargetModal(false),250);
+}
+async function saveCfg(){
+  cfg.stepSize=parseInt(document.getElementById('cfg-step').value)||6;
+  cfg.deposit=parseFloat(document.getElementById('cfg-dep').value)||300;
+  cfg.buyLimitPct=Math.max(0,Math.min(100,parseFloat(document.getElementById('cfg-buy-limit')?.value)||100));
+  cfg.fxRate=parseFloat(document.getElementById('cfg-fx')?.value)||1350;
+  cfg.targetDate=document.getElementById('cfg-target-date')?.value||'2029-12-27';
+  cfg.targetKRW=parseFloat(document.getElementById('cfg-target-krw')?.value)||100000000;
+  const targetJustReached=markTargetAchievement(getLast());
+  await save(); render();
+  if(targetJustReached) setTimeout(()=>showTargetModal(false),250);
+}
+
+function toggleCfg(){document.getElementById('cfg-panel').classList.toggle('open'); hydrateCfgFields();}
+function hydrateCfgFields(){
+  const ids={'cfg-step':cfg.stepSize,'cfg-dep':cfg.deposit,'cfg-buy-limit':cfg.buyLimitPct,'cfg-fx':cfg.fxRate,'cfg-target-date':cfg.targetDate,'cfg-target-krw':cfg.targetKRW};
+  Object.entries(ids).forEach(([id,val])=>{const el=document.getElementById(id); if(el && String(el.value)!==String(val??'')) el.value=val??'';});
+}
+function toggleSync(){document.getElementById('sync-panel').classList.toggle('open'); hydrateSyncFields();}
+function hydrateSyncFields(){
+  const ids={'sync-gist':sync.gistId,'sync-file':sync.fileName,'sync-token':sync.token};
+  Object.entries(ids).forEach(([id,val])=>{const el=document.getElementById(id); if(el && el.value!==val) el.value=val||'';});
+  const auto=document.getElementById('sync-auto'); if(auto) auto.checked=!!sync.autoPush;
+}
+async function saveSyncSettings(doSave=true){
+  sync.gistId=document.getElementById('sync-gist')?.value.trim()||'';
+  sync.fileName=document.getElementById('sync-file')?.value.trim()||'tqqq-vr-state.json';
+  sync.token=document.getElementById('sync-token')?.value.trim()||'';
+  sync.autoPush=!!document.getElementById('sync-auto')?.checked;
+  if(doSave) await save();
+}
+function setSyncStatus(msg){const el=document.getElementById('sync-status'); if(el) el.textContent=msg;}
+async function pushGist(showAlert=false){
+  await saveSyncSettings(false);
+  if(!sync.token){setSyncStatus('GitHub Token을 입력해야 저장할 수 있습니다.');return;}
+  const content=JSON.stringify(getState(),null,2);
+  const body={description:'TQQQ VR dashboard state',public:false,files:{[sync.fileName]:{content}}};
+  const url=sync.gistId?`https://api.github.com/gists/${sync.gistId}`:'https://api.github.com/gists';
+  const method=sync.gistId?'PATCH':'POST';
+  try{
+    const res=await fetch(url,{method,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+sync.token,'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!res.ok) throw new Error(await res.text());
+    const data=await res.json();
+    sync.gistId=data.id||sync.gistId;
+    await saveSyncSettings(true); hydrateSyncFields();
+    setSyncStatus('GitHub 저장 완료: '+new Date().toLocaleString());
+    if(showAlert) alert('GitHub Gist에 저장했습니다.');
+  }catch(e){setSyncStatus('GitHub 저장 실패: '+String(e.message||e).slice(0,160));}
+}
+async function pullGist(){
+  await saveSyncSettings(false);
+  if(!sync.gistId){setSyncStatus('Gist ID를 입력해주세요.');return;}
+  try{
+    const headers={'Accept':'application/vnd.github+json'};
+    if(sync.token) headers.Authorization='Bearer '+sync.token;
+    const res=await fetch(`https://api.github.com/gists/${sync.gistId}`,{headers});
+    if(!res.ok) throw new Error(await res.text());
+    const data=await res.json();
+    const file=data.files?.[sync.fileName] || Object.values(data.files||{})[0];
+    if(!file?.content) throw new Error('Gist 안에서 JSON 파일을 찾지 못했습니다.');
+    const state=JSON.parse(file.content);
+    const keepSync={...sync};
+    applyState(state,false);
+    sync={...keepSync,gistId:sync.gistId||data.id};
+    await save(); render(); hydrateCfgFields(); hydrateSyncFields();
+    setSyncStatus('GitHub 불러오기 완료: '+new Date().toLocaleString());
+  }catch(e){setSyncStatus('GitHub 불러오기 실패: '+String(e.message||e).slice(0,160));}
+}
+function exportJson(){
+  const blob=new Blob([JSON.stringify(getState(),null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='tqqq-vr-state-'+new Date().toISOString().slice(0,10)+'.json'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),500);
+}
+function importJsonFile(ev){
+  const file=ev.target.files?.[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=async()=>{
+    try{applyState(JSON.parse(reader.result),true); await save(); setSyncStatus('JSON 복원 완료');}
+    catch(e){setSyncStatus('JSON 복원 실패: '+e.message);}
+  };
+  reader.readAsText(file);
+  ev.target.value='';
+}
+
+document.getElementById('target-modal-backdrop')?.addEventListener('click',e=>{if(e.target.id==='target-modal-backdrop') closeTargetModal();});
+load();
+</script>
+
+</body>
+</html>
